@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.page1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #283048, #859398);
+}
+.page1 button{
+    background: linear-gradient(to right, #6a9113, #141517);
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: 22px;
+    border: #6a9113;
+    border-radius: 10px;
+}
+.page2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #70e1f5, #ffd194);
+    display: none;
+}
+.page2 h1{
+    font-size: 40px;
+}
+.avatar img{
+    width: 150px;
+    height: 250px;
+    margin:  2rem;
+}
+.page3{
+    background: linear-gradient(to right, #e53935, #e35d5b);
+    height: 100vh;
+    display: none;
+}

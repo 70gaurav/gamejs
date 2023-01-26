@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="page1">
+            <button>Start game</button>
+        </div>
+        <div class="page2">
+            <h1>Select your avatar</h1>
+            <div class="avatar">
+                <img src="images/febd8ef35ee91d998384353fc0b3f633--twitter-icon-new-twitter-removebg-preview.png" alt="">
+                <img src="images/images-removebg-preview.png" alt="">
+                <img src="images/images__1_-removebg-preview.png" alt="">
+            </div>
+        </div>
+        <div class="page3">
+
+        </div>
+    </div>
+</body>
+
+
+<script>
+    let start = document.querySelector('button')
+    let page1 = document.querySelector('.page1')
+    let page2 = document.querySelector('.page2')
+    let page3 = document.querySelector('.page3')
+    let avatar = document.querySelectorAll('img')
+    start.onclick = () => {
+        page1.style.display='none'
+        page2.style.display='flex'
+    }
+    for(let i = 0;i<avatar.length;i++){
+        avatar[i].onclick = () => {
+            page2.style.display='none'
+            page3.style.display='flex'
+        }
+    }
+</script>
+</html>
