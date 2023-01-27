@@ -39,4 +39,10 @@
     background: linear-gradient(to right, #e53935, #e35d5b);
     height: 100vh;
     display: none;
+    position: relative;
+}
+.random img{
+    position: absolute;
+    height: 100px;
+    width: 75px;
 }
