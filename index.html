@@ -37,19 +37,25 @@
     let page3 = document.querySelector('.page3')
     let avatar = document.querySelectorAll('img')
     let time = document.querySelector('.page3 h1 span')
+    let score = document.querySelector('.page3 h2 span')
     let random = document.querySelector('.random')
+    let avenger = document.querySelectorAll('.random img')
     start.onclick = () => {
         page1.style.display='none'
         page2.style.display='flex'
     }
+    let game = "" 
     for(let i = 0;i<avatar.length;i++){
         avatar[i].onclick = () => {
+
+            game = avatar[i].src
             page2.style.display='none'
             page3.style.display='block'
             timestart()
             randomimage( )
         }
     }
+   
     function timestart () {
         setInterval (() =>{
             time.innerHTML = Number(time.innerHTML)+1
@@ -57,18 +63,39 @@
     }
     function randomimage (){
 
-        setInterval(() =>{
-            let y = page3.clientHeight
-            let x = page3.clientWidth
-            let pic = document.createElement('img')
-            pic.src = "images/images-removebg-preview.png"
-            random.insertAdjacentElement('beforeend',pic)
-            let top = Math.random()*y
-            let left = Math.random()*x
-            pic.style.left = left + "px"
-            pic.style.top = top + "px"
-        },1500)
-    }
+setInterval(() =>{
+    let y = page3.clientHeight
+    let x = page3.clientWidth
+    let pic = document.createElement('img')
+    pic.src = game
+    random.insertAdjacentElement('beforeend',pic)
+    let top = Math.random()*y
+    let left = Math.random()*x
+    pic.style.left = left + "px"
+    pic.style.top = top + "px"
+   
+},500)
+}
+
+random.onclick = () => {
+
+if (event.target.tagName.toLowerCase() === "img") {
+    event.target.style.display = "none"
+    score.innerHTML = Number(score.innerHTML) + 1
+}
+}
+
+
+
+
+
+
+
+
+    // avenger.onclick = () => {
+    //     pic.style.display = "none"
+    //     score.innerHTML = Number(score.innerHTML) +1
+    // } 
     
     
 </script>
