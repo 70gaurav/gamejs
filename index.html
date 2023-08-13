@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Game</title>
     <link rel="stylesheet" href="game.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="page1">
@@ -15,88 +17,110 @@
         <div class="page2">
             <h1>Select your avatar</h1>
             <div class="avatar">
-                <img src="images/febd8ef35ee91d998384353fc0b3f633--twitter-icon-new-twitter-removebg-preview.png" alt="">
+                <img src="images/febd8ef35ee91d998384353fc0b3f633--twitter-icon-new-twitter-removebg-preview.png"
+                    alt="">
                 <img src="images/images-removebg-preview.png" alt="">
                 <img src="images/images__1_-removebg-preview.png" alt="">
             </div>
         </div>
         <div class="page3">
             <h1>Time: <span>0</span></h1>
-            <h2>score: <span>0</span></h2>
+            <h2>Score: <span>0</span></h2>
             <div class="random"></div>
-
         </div>
     </div>
 </body>
 
-
 <script>
-    let start = document.querySelector('button')
-    let page1 = document.querySelector('.page1')
-    let page2 = document.querySelector('.page2')
-    let page3 = document.querySelector('.page3')
-    let avatar = document.querySelectorAll('img')
-    let time = document.querySelector('.page3 h1 span')
-    let score = document.querySelector('.page3 h2 span')
-    let random = document.querySelector('.random')
-    let avenger = document.querySelectorAll('.random img')
+    let start = document.querySelector('button');
+    let page1 = document.querySelector('.page1');
+    let page2 = document.querySelector('.page2');
+    let page3 = document.querySelector('.page3');
+    let avatar = document.querySelectorAll('img');
+    let time = document.querySelector('.page3 h1 span');
+    let score = document.querySelector('.page3 h2 span');
+    let random = document.querySelector('.random');
+    let avenger = document.querySelectorAll('.random img');
+    let intervalId = null;
+
     start.onclick = () => {
-        page1.style.display='none'
-        page2.style.display='flex'
-    }
-    let game = "" 
-    for(let i = 0;i<avatar.length;i++){
+        page1.style.display = 'none';
+        page2.style.display = 'flex';
+    };
+
+    let game = "";
+    for (let i = 0; i < avatar.length; i++) {
         avatar[i].onclick = () => {
+            game = avatar[i].src;
+            page2.style.display = 'none';
+            page3.style.display = 'block';
+            timestart();
+            randomimage();
+        };
+    }
 
-            game = avatar[i].src
-            page2.style.display='none'
-            page3.style.display='block'
-            timestart()
-            randomimage( )
+    function timestart() {
+        intervalId = setInterval(() => {
+            time.innerHTML = Number(time.innerHTML) + 1;
+            if (Number(time.innerHTML) >= 60) {
+                clearInterval(intervalId);
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function endGame() {
+        random.innerHTML = ''; // Clear the game area
+        random.style.display = 'none';
+
+        let popup = document.createElement('div');
+        popup.className = 'popup';
+        popup.innerHTML = `
+            <h1>Game Over!</h1>
+            <p>Your score: <span id="popup-score">${score.innerHTML}</span></p>
+            <button id="replay">Replay</button>
+            <button id="home">Home</button>`;
+        document.body.appendChild(popup);
+
+        let replayButton = document.getElementById('replay');
+        replayButton.onclick = () => {
+            popup.remove();
+            time.innerHTML = '0';
+            score.innerHTML = '0';
+            random.style.display = 'block';
+            randomimage();
+            timestart();
+        };
+
+        let homeButton = document.getElementById('home');
+        homeButton.onclick = () => {
+            popup.remove();
+            page3.style.display = 'none';
+            page1.style.display = 'flex';
+            
+        };
+    }
+
+    function randomimage() {
+        setInterval(() => {
+            let y = page3.clientHeight;
+            let x = page3.clientWidth;
+            let pic = document.createElement('img');
+            pic.src = game;
+            random.insertAdjacentElement('beforeend', pic);
+            let top = Math.random() * y;
+            let left = Math.random() * x;
+            pic.style.left = left + "px";
+            pic.style.top = top + "px";
+        }, 500);
+    }
+
+    random.onclick = () => {
+        if (event.target.tagName.toLowerCase() === "img") {
+            event.target.style.display = "none";
+            score.innerHTML = Number(score.innerHTML) + 1;
         }
-    }
-   
-    function timestart () {
-        setInterval (() =>{
-            time.innerHTML = Number(time.innerHTML)+1
-        },1000)
-    }
-    function randomimage (){
-
-setInterval(() =>{
-    let y = page3.clientHeight
-    let x = page3.clientWidth
-    let pic = document.createElement('img')
-    pic.src = game
-    random.insertAdjacentElement('beforeend',pic)
-    let top = Math.random()*y
-    let left = Math.random()*x
-    pic.style.left = left + "px"
-    pic.style.top = top + "px"
-   
-},500)
-}
-
-random.onclick = () => {
-
-if (event.target.tagName.toLowerCase() === "img") {
-    event.target.style.display = "none"
-    score.innerHTML = Number(score.innerHTML) + 1
-}
-}
-
-
-
-
-
-
-
-
-    // avenger.onclick = () => {
-    //     pic.style.display = "none"
-    //     score.innerHTML = Number(score.innerHTML) +1
-    // } 
-    
-    
+    };
 </script>
+
 </html>

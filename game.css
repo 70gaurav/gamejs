@@ -1,24 +1,31 @@
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-.page1{
+
+
+.page1 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background: linear-gradient(to right, #283048, #859398);
 }
-.page1 button{
+
+.page1 button {
     background: linear-gradient(to right, #6a9113, #141517);
     padding: 0.5rem 1rem;
     color: white;
     font-size: 22px;
-    border: #6a9113;
+    border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
-.page2{
+
+/* Page 2 */
+.page2 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,22 +34,61 @@
     background: linear-gradient(to right, #70e1f5, #ffd194);
     display: none;
 }
-.page2 h1{
+
+.page2 h1 {
     font-size: 40px;
 }
-.avatar img{
+
+.avatar img {
     width: 150px;
     height: 250px;
-    margin:  2rem;
+    margin: 2rem;
 }
-.page3{
+
+
+.page3 {
     background: linear-gradient(to right, #e53935, #e35d5b);
     height: 100vh;
     display: none;
     position: relative;
+    overflow: hidden; 
 }
-.random img{
+
+.random img {
     position: absolute;
     height: 100px;
     width: 75px;
+}
+
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.popup h1 {
+    font-size: 24px;
+    margin-bottom: 1rem;
+}
+
+.popup p {
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.popup button {
+    background: linear-gradient(to right, #6a9113, #141517);
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
